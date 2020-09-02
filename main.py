@@ -1,16 +1,12 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from application import Application
+import routing
+import front_controllers
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+from wsgiref.simple_server import make_server
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+application = Application(routing.url_patterns, front_controllers.controllers_list)
+
+httpd = make_server('127.0.0.1', 8000, application)
+httpd.serve_forever()
