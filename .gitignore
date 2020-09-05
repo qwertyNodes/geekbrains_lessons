@@ -1,3 +1,5 @@
 .idea
 venv
 cust_venv
+__pycache__
+framework.zip
