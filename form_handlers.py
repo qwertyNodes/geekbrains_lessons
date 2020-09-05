@@ -3,10 +3,10 @@ import views
 
 
 def distrib(request):
-    type = request['body']['form_type']
+    type_ = request['body']['form_type']
 
-    if type in form_types.keys():
-        return form_types[type](request)
+    if type_ in form_types.keys():
+        return form_types[type_](request)
 
 
 def contact(request):
