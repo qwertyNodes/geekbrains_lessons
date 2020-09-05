@@ -1,20 +1,24 @@
-import json
-
+import utils
 import views
 
 
-def dist(request):
-    form_type = request['BODY']['form_type']
-    pass
+def distrib(request):
+    type = request['body']['form_type']
+
+    if type in form_types.keys():
+        return form_types[type](request)
 
 
 def contact(request):
-    params = {
-        'email': request['BODY']['email'][0],
-        'subject': request['BODY']['subject'][0]
+    form_data = {
+        'email': request['body']['email'],
+        'subject': request['body']['subject'],
+        'message': request['body']['message']
     }
-    print('Message was sent successful!')
-    print('Email:\n{}\n'.format(params['email']))
-    print('subject:\n{}\n'.format(params['subject']))
-    print('Message:\n{}'.format(request['BODY']['message'][0]))
-    return views.contact(request, **params)
+    utils.save_form_data(form_data)
+    return views.contact(request, **form_data)
+
+
+form_types = {
+    'contact': contact
+}

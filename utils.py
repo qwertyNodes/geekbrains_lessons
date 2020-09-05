@@ -1,3 +1,7 @@
+import csv
+import os
+
+
 def get_email(request):
     return request['BODY']['email'][0]
 
@@ -25,3 +29,23 @@ def read_body(request):
     return request['wsgi.input'].read(content_length).decode()
 
 
+def save_contact_request(request):
+    content_length = int(request['CONTENT_LENGTH'])
+    return request['wsgi.input'].read(content_length).decode()
+
+
+def save_form_data(data):
+    data_directory = 'data'
+    file_name = 'contact_form.csv'
+    file_path = f'{data_directory}/{file_name}'
+    mode = 'a'
+
+    if not os.path.isfile(file_path):
+        mode = 'w'
+
+    with open(file_path, mode, newline='') as fc:
+        writer = csv.writer(fc, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        if mode == 'w':
+            writer.writerow(['email', 'subject', 'message'])
+
+        writer.writerow([data['email'], data['subject'], data['message']])

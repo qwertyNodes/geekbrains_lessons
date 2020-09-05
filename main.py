@@ -1,4 +1,4 @@
-from application import Application
+from core.application import Application
 import routing
 import front_controllers
 

@@ -7,5 +7,5 @@ url_patterns = {
     '/about': views.about,
     '/contact': views.contact,
     '404': views.error404,
-    '/form': form_handlers.dist
+    '/form': form_handlers.distrib
 }

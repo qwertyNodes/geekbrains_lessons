@@ -11,16 +11,22 @@ def render(template_path, **kwargs):
     return t.render(**kwargs)
 
 
-def about(request):
-    return '200 OK', render('about.html', **{'page_title': 'About page'})
+def about(request, **kwargs):
+    kwargs.update({'page_title': 'About page'})
+
+    return '200 OK', render('about.html', **kwargs)
 
 
-def index(request):
-    return '200 OK', render('index.html', **{'page_title': 'Index page'})
+def index(request, **kwargs):
+    kwargs.update({'page_title': 'Index page'})
+
+    return '200 OK', render('index.html', **kwargs)
 
 
-def error404(request):
-    return '404 ERROR', render('404.html', **{'page_title': '404 not found'})
+def error404(request, **kwargs):
+    kwargs.update({'page_title': '404 not found'})
+
+    return '404 ERROR', render('404.html', **kwargs)
 
 
 def contact(request, **kwargs):
