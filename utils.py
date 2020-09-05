@@ -3,15 +3,15 @@ import os
 
 
 def get_email(request):
-    return request['BODY']['email'][0]
+    return request['BODY']['email']
 
 
 def get_subject(request):
-    return request['BODY']['subject'][0]
+    return request['BODY']['subject']
 
 
 def get_message(request):
-    return request['BODY']['message'][0]
+    return request['BODY']['message']
 
 
 def parse_params(url_data):
@@ -29,12 +29,7 @@ def read_body(request):
     return request['wsgi.input'].read(content_length).decode()
 
 
-def save_contact_request(request):
-    content_length = int(request['CONTENT_LENGTH'])
-    return request['wsgi.input'].read(content_length).decode()
-
-
-def save_form_data(data):
+def save_contact_form_data(data):
     data_directory = 'data'
     file_name = 'contact_form.csv'
     file_path = f'{data_directory}/{file_name}'

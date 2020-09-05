@@ -15,7 +15,7 @@ def contact(request):
         'subject': request['body']['subject'],
         'message': request['body']['message']
     }
-    utils.save_form_data(form_data)
+    utils.save_contact_form_data(form_data)
     return views.contact(request, **form_data)
 
 
