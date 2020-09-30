@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% set active_page = "contact" %}
+
+{% block content %}
+    {% if email %}
+        <div class="alert alert-success" role="alert">
+            Thank you! We will answer to your email <strong>{{ email }}</strong> shortly.<br />
+            <br />
+            You have sent message with the following subject: <br />
+            <strong>{{ subject }}</strong>
+        </div>
+    {% endif %}
+
+    <form action="/form" method="post" id="contact-form">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" value="example@mail.com" />
+        </div>
+
+        <div class="form-group">
+            <label for="subject">Subject:</label>
+            <input type="text" class="form-control" id="subject" name="subject" value="Subject example" />
+        </div>
+
+        <div class="form-group">
+            <label for="course_description">Message</label>
+            <textarea class="form-control" rows="4" cols="50" name="message" id="course_description" form="contact-form">Type your message...</textarea>
+        </div>
+
+        <input name="form_type" type="hidden" id="form_type" value="contact" />
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}
