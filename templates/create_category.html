@@ -1,2 +1,40 @@
 {% extends 'base.html' %}
 
+{% block title %}
+    {{ page_title }}
+{% endblock %}
+
+{% set active_page = "create_category" %}
+
+{% block content %}
+    <div class="bd-example">
+        {% if new_added %}
+            <div class="alert alert-success" role="alert">
+                "{{ category_name }}" successfully added
+            </div>
+        {% endif %}
+        <form action="/form" method="post" id="contact-form">
+            <div class="form-group">
+                <label for="category_name">Category name</label>
+                <input type="text" class="form-control" id="category_name" name="category_name">
+            </div>
+
+            <div class="form-group">
+                <label for="parent_categories">Parent categories</label>
+                <select multiple="" class="form-control" id="parent_categories" name="parent_category">
+                    {% for category in all_categories %}
+                        <option>category.name</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="category_description">Category description</label>
+                <textarea class="form-control" id="category_description" rows="3" form="contact-form"></textarea>
+            </div>
+
+            <input name="form_type" type="hidden" id="form_type" value="create_category">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+{% endblock %}

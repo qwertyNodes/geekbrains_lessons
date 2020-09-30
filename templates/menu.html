@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% set nav_bar=[
+    ('/', 'index', 'Home'),
+    ('/create-category', 'create_category', 'Create category'),
+    ('/create-course', 'create_course', 'Create course'),
+    ('/categories', 'categories', 'Categories'),
+    ('/courses', 'courses', 'Courses'),
+    ('/contact', 'contact', 'Contact'),
+] %}
+
+{% set right_menu = ['contact'] %}
+
+{% set active_page = active_page|default('index') %}
+
+<ul style="width: 70%;" class="nav">
+    {% for href, id, text in nav_bar %}
+        <li {% if id == active_page %}class="active"{% endif %} {% if id in right_menu %}style="float:right;"{% endif %}><a href="{{ href }}">{{ text }}</a></li>
+    {% endfor %}
+</ul>

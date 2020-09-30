@@ -2,6 +2,7 @@ class Application:
     def __init__(self, url_patterns, front_controllers):
         self.url_patterns = url_patterns
         self.front_controllers = front_controllers
+        print('Application started')
 
     def __call__(self, environ, start_response):
         request = environ.copy()

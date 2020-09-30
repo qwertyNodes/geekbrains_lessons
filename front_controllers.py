@@ -10,7 +10,9 @@ def get_request_params(request):
         request['query_dict'] = dict(parse_qsl(query))
 
     if utils.has_body(request):
-        request['body'] = dict(parse_qsl(utils.read_body(request)))
+        request['body'] = utils.parse_form_data(parse_qsl(utils.read_body(request)))
+        print(request['body'])
+        pass
 
 
 controllers_list = [

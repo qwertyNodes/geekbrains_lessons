@@ -1,12 +1,17 @@
 from abc import ABC, abstractmethod
 
+from entities.category import *
+from entities.user import *
+
 
 class CourseAbstract:
     pass
 
 
 class CourseLive:
-    pass
+    def __init__(self, name, categories):
+        self.name = name
+        self.categories = categories
 
 
 class CourseWebinar:
@@ -15,8 +20,8 @@ class CourseWebinar:
 
 class CourseFactory:
     types = {
-        'live': CourseLive,
-        'webinar': CourseWebinar
+        'online': CourseWebinar,
+        'offline': CourseLive,
     }
 
     @staticmethod

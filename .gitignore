@@ -4,3 +4,4 @@ cust_venv
 __pycache__
 framework.zip
 *.pyc
+templates/code_examples.html

@@ -1,2 +1,67 @@
 {% extends 'base.html' %}
 
+
+{% set course_types = [
+    ('webinar', 'Webinar'),
+    ('live', 'Live'),
+] %}
+
+{% block title %}
+    {{ page_title }}
+{% endblock %}
+
+{% set active_page = "create_course" %}
+
+{% block content %}
+    <div class="bd-example">
+        {% if new_added %}
+            <div class="alert alert-success" role="alert">
+                "{{ course_name }}" successfully added
+            </div>
+        {% endif %}
+
+        <form action="/form" method="post" id="create-course">
+            <div class="form-group">
+                <label for="course_name">Course name</label>
+                <input type="text" class="form-control" id="course_name" name="course_name">
+            </div>
+
+            <div class="form-group">
+                <label for="course_type">Course type</label>
+                <select class="form-control" id="course_type" name="course_type">
+                    {% for machine, human in course_types %}
+                        <option value="{{ machine }}">{{ human }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="course_category">Category</label>
+                <select multiple="" class="form-control" id="course_category" name="course_category">
+                    {% for category in all_categories %}
+                        <option>{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="course_description">Course description</label>
+                <textarea class="form-control" name="course_description" id="course_description" rows="3" form="create-course"></textarea>
+            </div>
+
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="teacher_select">Choose teacher(s)</label>
+                    <select multiple="" class="form-control" id="teacher_select">
+                        {% for teacher in teachers %}
+                            <option>{{ teacher.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <input name="form_type" type="hidden" id="form_type" value="create_course">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+{% endblock %}
